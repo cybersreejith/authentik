@@ -74,7 +74,10 @@ export class Message extends AKElement {
     }
 
     public willUpdate(changed: PropertyValues<this>) {
-        if (changed.has("lifetime") && this.lifetime) {
+        if (
+            (changed.has("lifetime") && this.lifetime) ||
+            (changed.has("onDismiss") && this.onDismiss)
+        ) {
             this.#scheduleDismiss();
         }
     }
